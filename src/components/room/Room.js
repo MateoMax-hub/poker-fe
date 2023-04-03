@@ -1,3 +1,4 @@
+import { Button, Form, Input, Modal } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -6,13 +7,16 @@ import style from './room.module.css';
 import scrumpe from '../assets/scrumpe.png';
 
 const Room = () => {
-  const { bodyContainer, buttonArea, cardArea, userArea } = style;
+  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard } = style;
   const [myCard, setMyCard] = useState();
   const [roomData, setRoomData] = useState([]);
+  const [enterNameModalShow, setEnterNameModalShow] = useState(false);
+  const [name, setName] = useState('');
+  const [reveal, setReveal] = useState(false);
   const cards = [0, 1, 2, 3, 5, 8, 12, 20];
   const socket = useRef();
-  let { id } = useParams();
-  const token = id;
+  const { id: token } = useParams();
+  const [nameForm] = Form.useForm();
 
   useEffect(() => {
     socket.current = socketIo;
@@ -20,7 +24,7 @@ const Room = () => {
       updateRoomData(data.sender, data.card, data.senderName)
     );
     socket.current.on('getOthersDataBe 4', (data) => {
-      updateRoomData(data.sender, data.card);
+      updateRoomData(data.sender, data.card, data.name);
     });
     socket.current.on('getOthersDataBe 2', (data) => {
       if (data.requester !== socket.current.id) {
@@ -41,20 +45,27 @@ const Room = () => {
         });
       }
     });
+    socket.current.on('handle hand response', (data) => {
+      setReveal(data.show);
+    });
     return () => {
+      socket.current.off('point response');
+      socket.current.off('getOthersDataBe 4');
       socket.current.off('getOthersDataBe 2');
+      socket.current.off('connect room response');
+      socket.current.off('handle hand response');
     };
-  }, [myCard]);
+  }, [myCard, name]);
 
   useEffect(() => {
-    if (token) {
+    if (token && name) {
       socket.current.emit('connect room', { room: token });
     }
-  }, [token]);
+  }, [token, name]);
 
   useEffect(() => {
-    console.log(roomData);
-  }, [roomData]);
+    setEnterNameModalShow(true);
+  }, []);
 
   const sendCard = (point) => {
     setMyCard(point);
@@ -67,27 +78,53 @@ const Room = () => {
     });
   };
 
-  const updateRoomData = (hand, card) => {
+  const updateRoomData = (hand, card, playerName) => {
     const handPlayedFound = roomData.some((player) => player.id === hand);
     if (handPlayedFound) {
       const newHandInserted = roomData.map((player) => {
-        if (player.id === hand) return { ...player, card };
+        if (player.id === hand) return { ...player, card, playerName };
         return player;
       });
       return setRoomData(newHandInserted);
     }
-    setRoomData([...roomData, { id: hand, card }]);
+    setRoomData([...roomData, { id: hand, card, playerName }]);
+  };
+
+  const submitNameForm = () => {
+    nameForm.submit();
+    setEnterNameModalShow(false);
+  };
+
+  const handleSubmit = (values) => {
+    setName(values.name);
+    setRoomData([{id: socket.current.id, card: undefined, playerName: values.name }]);
+  };
+
+  const showHands = (show) => {
+    socket.current.emit('handle hand', { show, room: token });
+    setReveal(show);
+    if (!show) {
+      const usersWithoutCards = roomData.map((player) => ({...player, card: undefined}));
+      setRoomData(usersWithoutCards);
+    }
   };
 
   return (
     <>
       <div className={bodyContainer}>
-        <div className={userArea}>
-          <img src={scrumpe} alt='imagen usuario'/>
-          <p>User 1</p>
-        </div>
+        
+        {
+          roomData.length !== 0 &&
+          roomData.map((player) => (
+            <div className={userArea} key={player.id}>
+              {/* <img src={scrumpe} alt='imagen usuario'/> */}
+              <div className={selectedCard}>{reveal ? player.card : ''}</div>
+              <p>{player.playerName}</p>
+            </div>
+          ))
+        }
         <div className={cardArea}>
-          <button>Revelar cartas!</button>
+          <button onClick={() => showHands(!reveal)}>{reveal ? 'Reiniciar' : 'Revelar cartas'}</button>
         </div>
         <div className={userArea}>
           <img src={scrumpe} />
@@ -97,6 +134,9 @@ const Room = () => {
           {cards &&
             cards?.map((card) => (
               <button onClick={() => sendCard(card)} key={card}>
+                <div>
+                  {card === myCard ? 'SELECCIONADA' : ''}
+                </div>
                 {card}
               </button>
             ))}
@@ -105,7 +145,7 @@ const Room = () => {
           open={enterNameModalShow}
           closable={false}
           footer={[
-            <Button onClick={submitNameForm}>
+            <Button onClick={submitNameForm} key='1'>
               Guardar
             </Button>
           ]}

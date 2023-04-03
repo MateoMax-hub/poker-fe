@@ -101,3 +101,15 @@
   font-family: 'Roboto', sans-serif;
   font-size: medium;
 }
+
+.selectedCard {
+  border-radius: 0.6rem;
+  border: 0.1rem solid;
+  background-color: #3399ff;
+  color: black;
+  width: 2rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
