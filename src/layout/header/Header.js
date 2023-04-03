@@ -1,4 +1,12 @@
+import style from './header.module.css';
+
 const Header = () => {
-  return <h1>POKER PLANNING</h1>;
+  const { headerContainer } = style;
+
+  return (
+    <div className={headerContainer}>
+      <h1>POKER PLANNING</h1>
+    </div>
+  );
 };
 export default Header;
