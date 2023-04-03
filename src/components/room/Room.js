@@ -53,6 +53,7 @@ const Room = () => {
       socket.current.off('getOthersDataBe 4');
       socket.current.off('getOthersDataBe 2');
       socket.current.off('connect room response');
+      socket.current.off('handle hand response');
     };
   }, [myCard, name]);
 
