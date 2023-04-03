@@ -1,4 +1,3 @@
-import { Button, Form, Input, Modal } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
@@ -10,12 +9,10 @@ const Room = () => {
   const { bodyContainer, buttonArea, cardArea, userArea } = style;
   const [myCard, setMyCard] = useState();
   const [roomData, setRoomData] = useState([]);
-  const [enterNameModalShow, setEnterNameModalShow] = useState(false);
-  const [name, setName] = useState('');
   const cards = [0, 1, 2, 3, 5, 8, 12, 20];
   const socket = useRef();
-  const { id: token } = useParams();
-  const [nameForm] = Form.useForm();
+  let { id } = useParams();
+  const token = id;
 
   useEffect(() => {
     socket.current = socketIo;
@@ -23,7 +20,7 @@ const Room = () => {
       updateRoomData(data.sender, data.card, data.senderName)
     );
     socket.current.on('getOthersDataBe 4', (data) => {
-      updateRoomData(data.sender, data.card, data.name);
+      updateRoomData(data.sender, data.card);
     });
     socket.current.on('getOthersDataBe 2', (data) => {
       if (data.requester !== socket.current.id) {
@@ -45,23 +42,15 @@ const Room = () => {
       }
     });
     return () => {
-      socket.current.off('point response');
-      socket.current.off('getOthersDataBe 4');
       socket.current.off('getOthersDataBe 2');
-      socket.current.off('connect room response');
     };
-  }, [myCard, name]);
+  }, [myCard]);
 
   useEffect(() => {
-    if (token && name) {
+    if (token) {
       socket.current.emit('connect room', { room: token });
     }
-  }, [token, name]);
-
-  useEffect(() => {
-    setEnterNameModalShow(true);
-  }, []);
-  
+  }, [token]);
 
   useEffect(() => {
     console.log(roomData);
@@ -78,26 +67,16 @@ const Room = () => {
     });
   };
 
-  const updateRoomData = (hand, card, playerName) => {
+  const updateRoomData = (hand, card) => {
     const handPlayedFound = roomData.some((player) => player.id === hand);
     if (handPlayedFound) {
       const newHandInserted = roomData.map((player) => {
-        if (player.id === hand) return { ...player, card, playerName };
+        if (player.id === hand) return { ...player, card };
         return player;
       });
       return setRoomData(newHandInserted);
     }
-    setRoomData([...roomData, { id: hand, card, playerName }]);
-  };
-
-  const submitNameForm = () => {
-    nameForm.submit();
-    setEnterNameModalShow(false);
-  };
-
-  const handleSubmit = (values) => {
-    setName(values.name);
-    setRoomData([{id: socket.current.id, card: undefined, playerName: values.name }]);
+    setRoomData([...roomData, { id: hand, card }]);
   };
 
   return (
