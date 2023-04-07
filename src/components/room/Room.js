@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 const socketIo = io('http://localhost:4000');
 import style from './room.module.css';
-import scrumpe from '../assets/scrumpe.png';
 
 const Room = () => {
   const { bodyContainer, buttonArea, cardArea, userArea, selectedCard } = style;
