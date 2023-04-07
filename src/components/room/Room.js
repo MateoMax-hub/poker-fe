@@ -20,7 +20,7 @@ const Room = () => {
 
   useEffect(() => {
     socket.current = socketIo;
-    socket.current.on('point response', (data) => 
+    socket.current.on('point response', (data) =>
       updateRoomData(data.sender, data.card, data.senderName)
     );
     socket.current.on('getOthersDataBe 4', (data) => {
@@ -97,14 +97,19 @@ const Room = () => {
 
   const handleSubmit = (values) => {
     setName(values.name);
-    setRoomData([{id: socket.current.id, card: undefined, playerName: values.name }]);
+    setRoomData([
+      { id: socket.current.id, card: undefined, playerName: values.name },
+    ]);
   };
 
   const showHands = (show) => {
     socket.current.emit('handle hand', { show, room: token });
     setReveal(show);
     if (!show) {
-      const usersWithoutCards = roomData.map((player) => ({...player, card: undefined}));
+      const usersWithoutCards = roomData.map((player) => ({
+        ...player,
+        card: undefined,
+      }));
       setRoomData(usersWithoutCards);
     }
   };
@@ -112,31 +117,24 @@ const Room = () => {
   return (
     <>
       <div className={bodyContainer}>
-        
-        {
-          roomData.length !== 0 &&
+        {roomData.length !== 0 &&
           roomData.map((player) => (
             <div className={userArea} key={player.id}>
               {/* <img src={scrumpe} alt='imagen usuario'/> */}
               <div className={selectedCard}>{reveal ? player.card : ''}</div>
               <p>{player.playerName}</p>
             </div>
-          ))
-        }
+          ))}
         <div className={cardArea}>
-          <button onClick={() => showHands(!reveal)}>{reveal ? 'Reiniciar' : 'Revelar cartas'}</button>
-        </div>
-        <div className={userArea}>
-          <img src={scrumpe} />
-          <p>User 2</p>
+          <button onClick={() => showHands(!reveal)}>
+            {reveal ? 'Reiniciar' : 'Revelar cartas'}
+          </button>
         </div>
         <div className={buttonArea}>
           {cards &&
             cards?.map((card) => (
               <button onClick={() => sendCard(card)} key={card}>
-                <div>
-                  {card === myCard ? 'SELECCIONADA' : ''}
-                </div>
+                <div>{card === myCard ? 'SELECCIONADA' : ''}</div>
                 {card}
               </button>
             ))}
@@ -145,14 +143,19 @@ const Room = () => {
           open={enterNameModalShow}
           closable={false}
           footer={[
-            <Button onClick={submitNameForm} key='1'>
+            <Button onClick={submitNameForm} key="1">
               Guardar
-            </Button>
+            </Button>,
           ]}
-          title='¿Con que nombre quieres entrar a la mesa?'
+          title="¿Con que nombre quieres entrar a la mesa?"
         >
           <Form form={nameForm} onFinish={handleSubmit}>
-            <Form.Item name='name' rules={[{ required: true, message: 'Por favor rellenar con un nombre'}]}>
+            <Form.Item
+              name="name"
+              rules={[
+                { required: true, message: 'Por favor rellenar con un nombre' },
+              ]}
+            >
               <Input />
             </Form.Item>
           </Form>
