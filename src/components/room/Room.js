@@ -12,7 +12,7 @@ const Room = () => {
   const [enterNameModalShow, setEnterNameModalShow] = useState(false);
   const [name, setName] = useState('');
   const [reveal, setReveal] = useState(false);
-  const cards = [0, 1, 2, 3, 5, 8, 12, 20];
+  const cards = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕'];
   const socket = useRef();
   const { id: token } = useParams();
   const [nameForm] = Form.useForm();
