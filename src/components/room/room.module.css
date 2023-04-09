@@ -90,7 +90,6 @@
 }
 
 .userArea {
-  background-color: #1e1e52c0;
   width: 5rem;
   display: flex;
   align-items: center;
@@ -100,13 +99,26 @@
   font-size: medium;
 }
 
-.selectedCard {
-  border-radius: 0.6rem;
-  border: 0.1rem solid;
+.userArea > p {
   background-color: #3399ff;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.6rem;
   color: black;
-  width: 2rem;
-  height: 2.5rem;
+  margin-top: 0;
+}
+
+.selectedCard {
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+  border: 0.1rem solid #3399ff;
+  border-bottom: 0;
+  background-color: #11213e;
+  color: white;
+  width: 2.5rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
