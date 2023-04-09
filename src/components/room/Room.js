@@ -132,7 +132,6 @@ const Room = () => {
           {cards &&
             cards?.map((card) => (
               <button onClick={() => sendCard(card)} key={card}>
-                <div>{card === myCard ? 'SELECCIONADA' : ''}</div>
                 {card}
               </button>
             ))}
