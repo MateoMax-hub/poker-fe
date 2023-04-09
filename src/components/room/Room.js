@@ -119,7 +119,6 @@ const Room = () => {
         {roomData.length !== 0 &&
           roomData.map((player) => (
             <div className={userArea} key={player.id}>
-              {/* <img src={scrumpe} alt='imagen usuario'/> */}
               <div className={selectedCard}>{reveal ? player.card : ''}</div>
               <p>{player.playerName}</p>
             </div>
