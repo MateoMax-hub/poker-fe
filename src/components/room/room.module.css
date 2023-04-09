@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-:root {
+/* :root {
   --bgColor: #221c39;
   --bgCardArea: #1c1731;
   --border: #232245;
@@ -9,7 +9,7 @@
   --borderButtonHover: #374552;
   --bgSelectedCard: #11213e;
   --cardTable: #232245;
-}
+} */
 
 .bodyContainer {
   display: flex;
