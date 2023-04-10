@@ -1,0 +1,52 @@
+.homeContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+.homeContainer > div:first-child {
+  background-color: var(--bgColor);
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 5rem 3rem 5rem;
+  font-size: larger;
+  align-items: center;
+}
+
+.homeContainer > div:first-child > h1 {
+  margin: 3rem 5rem 3rem 2rem;
+  color: var(--bgButton);
+  height: 10rem;
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+}
+
+.homeContainer > div:nth-child(2) {
+  background-color: blue;
+  width: 45%;
+}
+
+.button {
+  margin-top: 6rem;
+}
+
+.button > button {
+  width: 20rem;
+  height: 4rem;
+  background-color: var(--bgButton);
+  border-radius: 0.3rem;
+  border: 0.1rem solid;
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+}
+
+.button > button:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  color: white;
+  background-color: var(--bgButtonHover);
+  border: 0.2rem solid var(--borderButtonHover);
+  font-size: large;
+}
