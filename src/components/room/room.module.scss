@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+.bodyContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--bgColor);
+  height: calc(100vh - 7.2rem);
+}
+
+.bodyContainer div > img {
+  max-width: 4rem;
+  max-height: 4rem;
+  border-radius: 1rem;
+}
+
+.buttonArea {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  bottom: -5.6rem;
+}
+
+.buttonArea > button {
+  height: 8rem;
+  min-width: 5rem;
+  border-radius: 0.6rem;
+  border: 0.1rem solid;
+  background-color: var(--bgButton);
+  font-size: large;
+  margin: 5rem 0.3rem 3rem 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonArea > button:hover {
+  transition: 0.3s;
+  transform: translateY(-1.5rem);
+}
+
+.buttonArea:hover {
+  transition: 0.3s;
+  bottom: -2.5rem;
+}
+
+.userArea {
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  font-size: medium;
+}
+
+.userArea > p {
+  background-color: var(--bgButton);
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.6rem;
+  color: black;
+  margin-top: 0;
+}
+
+.selectedCard {
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+  border: 0.1rem solid var(--bgButtonHover);
+  border-bottom: 0;
+  background-color: var(--border);
+  color: white;
+  width: 2.5rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 8rem 50rem 8rem;
+  grid-template-rows: 6rem 20rem 6rem;
+
+  & > div {
+    &:nth-child(1) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    &:nth-child(2) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+    &:nth-child(4) {
+      grid-column: 3;
+      grid-row: 1 / 4;
+    }
+    &:nth-child(3) {
+      grid-column-start: 1;
+      grid-row: 1 / 4;
+    }
+    &:nth-child(5) {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > div {
+        background-color: var(--bgCardArea);
+        background-image: radial-gradient(var(--cardTable) 9px, transparent 10px),
+          repeating-radial-gradient(
+            var(--cardTable) 0,
+            var(--cardTable) 4px,
+            transparent 5px,
+            transparent 20px,
+            var(--cardTable) 21px,
+            var(--cardTable) 25px,
+            transparent 26px,
+            transparent 50px
+          );
+        background-size: 30px 30px, 90px 90px;
+        background-position: 15px -15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.2rem solid var(--border);
+        border-radius: 2rem;
+        width: 90%;
+        height: 90%;
+
+        & > button {
+          width: 10rem;
+          height: 3rem;
+          background-color: var(--bgButton);
+          border-radius: 0.3rem;
+          border: 0.1rem solid;
+          font-family: 'Roboto', sans-serif;
+          font-size: medium;
+
+          &:hover {
+            transform: scale(1.1);
+            transition: 0.3s;
+            color: white;
+            background-color: var(--bgButtonHover);
+            border: 0.2rem solid var(--borderButtonHover);
+          }
+        }
+      }
+    }
+  }
+}
