@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-/* :root {
-  --bgColor: #221c39;
-  --bgCardArea: #1c1731;
-  --border: #232245;
-  --bgButton: #5f8ab6;
-  --bgButtonHover: #3f5e7c;
-  --borderButtonHover: #374552;
-  --bgSelectedCard: #11213e;
-  --cardTable: #232245;
-} */
-
 .bodyContainer {
   display: flex;
   align-items: center;
