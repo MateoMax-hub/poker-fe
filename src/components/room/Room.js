@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 const socketIo = io('http://localhost:4000');
-import style from './room.module.css';
+import style from './room.module.scss';
 
 const Room = () => {
-  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard } = style;
+  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard, table } = style;
   const [myCard, setMyCard] = useState();
   const [roomData, setRoomData] = useState([]);
   const [enterNameModalShow, setEnterNameModalShow] = useState(false);
@@ -47,14 +47,18 @@ const Room = () => {
     socket.current.on('handle hand response', (data) => {
       setReveal(data.show);
     });
+    socket.current.on('player disconnected', (data) => {
+      disconnectPlayer(data.player);
+    });
     return () => {
       socket.current.off('point response');
       socket.current.off('getOthersDataBe 4');
       socket.current.off('getOthersDataBe 2');
       socket.current.off('connect room response');
       socket.current.off('handle hand response');
+      socket.current.off('player disconnected');
     };
-  }, [myCard, name]);
+  }, [myCard, name, roomData]);
 
   useEffect(() => {
     if (token && name) {
@@ -86,7 +90,14 @@ const Room = () => {
       });
       return setRoomData(newHandInserted);
     }
-    setRoomData([...roomData, { id: hand, card, playerName }]);
+    setRoomData((prevState) => [...prevState, { id: hand, card, playerName }]);
+  };
+
+  const disconnectPlayer = (playerToDisconnect) => {
+    const roomUpdated = roomData.filter((player) => player.id !== playerToDisconnect);
+    console.log(roomUpdated);
+    console.log(roomData);
+    setRoomData(roomUpdated);
   };
 
   const submitNameForm = () => {
@@ -113,20 +124,91 @@ const Room = () => {
     }
   };
 
+  const handleSitUsers = () => {
+    let initialPos = 'top';
+    const config = [
+      { name: 'top', limit: 0, users: [] },
+      { name: 'bottom', limit: 0, users: [] },
+      { name: 'left', limit: 3, users: [] },
+      { name: 'right', limit: 3, users: [] },
+    ];
+    for (const player of roomData) {
+      if (initialPos === 'top') {
+        config[0].users.push(player);
+        initialPos = 'bottom';
+      } else if (initialPos === 'bottom') {
+        config[1].users.push(player);
+        if (config[2].users.length !== config[2].limit) {
+          initialPos = 'left';
+        } else {
+          initialPos = 'top';
+        }
+      } else if (initialPos === 'left') {
+        config[2].users.push(player);
+        initialPos = 'right';
+      } else if (initialPos === 'right') {
+        config[3].users.push(player);
+        initialPos = 'top';
+      }
+    }
+    return (
+      <>
+        <div className='d-flex justify-content-around'>
+          {
+            config[0].users.length !== 0 && config[0].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>{reveal ? player.card : ''}</div>
+                <p>{player.playerName}</p>
+              </div>
+            ))
+          }
+        </div>
+        <div className='d-flex justify-content-around'>
+          {
+            config[1].users.length !== 0 && config[1].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>{reveal ? player.card : ''}</div>
+                <p>{player.playerName}</p>
+              </div>
+            ))
+          }
+        </div>
+        <div className='d-flex flex-column justify-content-around'>
+          {
+            config[2].users.length !== 0 && config[2].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>{reveal ? player.card : ''}</div>
+                <p>{player.playerName}</p>
+              </div>
+            ))
+          }
+        </div>
+        <div className='d-flex flex-column justify-content-around'>
+          {
+            config[3].users.length !== 0 && config[3].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>{reveal ? player.card : ''}</div>
+                <p>{player.playerName}</p>
+              </div>
+            ))
+          }
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <div className={bodyContainer}>
-        {roomData.length !== 0 &&
-          roomData.map((player) => (
-            <div className={userArea} key={player.id}>
-              <div className={selectedCard}>{reveal ? player.card : ''}</div>
-              <p>{player.playerName}</p>
+        <div className={table}>
+          {handleSitUsers()}
+          <div>
+            <div>
+              <button onClick={() => showHands(!reveal)}>
+                {reveal ? 'Reiniciar' : 'Revelar cartas'}
+              </button>
             </div>
-          ))}
-        <div className={cardArea}>
-          <button onClick={() => showHands(!reveal)}>
-            {reveal ? 'Reiniciar' : 'Revelar cartas'}
-          </button>
+          </div>
         </div>
         <div className={buttonArea}>
           {cards &&
