@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #1d1d3d;
+  background-color: var(--bgColor);
   height: calc(100vh - 7.2rem);
 }
 
@@ -28,9 +28,12 @@
   min-width: 5rem;
   border-radius: 0.6rem;
   border: 0.1rem solid;
-  background-color: #3399ff;
+  background-color: var(--bgButton);
   font-size: large;
   margin: 5rem 0.3rem 3rem 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonArea > button:hover {
@@ -48,13 +51,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: #3399ff;
   font-family: 'Roboto', sans-serif;
   font-size: medium;
 }
 
 .userArea > p {
-  background-color: #3399ff;
+  background-color: var(--bgButton);
   width: 100%;
   height: 2rem;
   display: flex;
@@ -67,9 +69,9 @@
 
 .selectedCard {
   border-radius: 0.3rem 0.3rem 0rem 0rem;
-  border: 0.1rem solid #3399ff;
+  border: 0.1rem solid var(--bgButtonHover);
   border-bottom: 0;
-  background-color: #11213e;
+  background-color: var(--border);
   color: white;
   width: 2.5rem;
   height: 3rem;
@@ -108,24 +110,24 @@
       align-items: center;
 
       & > div {
-        background-color: #1d1d3d;
-        background-image: radial-gradient(#1d1d4f 9px, transparent 10px),
+        background-color: var(--bgCardArea);
+        background-image: radial-gradient(var(--cardTable) 9px, transparent 10px),
           repeating-radial-gradient(
-            #1d1d4f 0,
-            #1d1d4f 4px,
+            var(--cardTable) 0,
+            var(--cardTable) 4px,
             transparent 5px,
             transparent 20px,
-            #1d1d4f 21px,
-            #1d1d4f 25px,
+            var(--cardTable) 21px,
+            var(--cardTable) 25px,
             transparent 26px,
             transparent 50px
           );
         background-size: 30px 30px, 90px 90px;
-        background-position: 0 0;
+        background-position: 15px -15px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 0.2rem solid #1d1d4f;
+        border: 0.2rem solid var(--border);
         border-radius: 2rem;
         width: 90%;
         height: 90%;
@@ -133,7 +135,7 @@
         & > button {
           width: 10rem;
           height: 3rem;
-          background-color: #3399ff;
+          background-color: var(--bgButton);
           border-radius: 0.3rem;
           border: 0.1rem solid;
           font-family: 'Roboto', sans-serif;
@@ -143,8 +145,8 @@
             transform: scale(1.1);
             transition: 0.3s;
             color: white;
-            background-color: #19376d;
-            border: 0.2rem solid #3399ff;
+            background-color: var(--bgButtonHover);
+            border: 0.2rem solid var(--borderButtonHover);
           }
         }
       }
