@@ -6,7 +6,16 @@ const socketIo = io('http://localhost:4000');
 import style from './room.module.scss';
 
 const Room = () => {
-  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard, table, cardSelected, blockCards } = style;
+  const {
+    bodyContainer,
+    buttonArea,
+    userArea,
+    selectedCard,
+    table,
+    cardSelected,
+    blockCards,
+    nameModal,
+  } = style;
   const [myCard, setMyCard] = useState();
   const [roomData, setRoomData] = useState([]);
   const [enterNameModalShow, setEnterNameModalShow] = useState(false);
@@ -94,7 +103,9 @@ const Room = () => {
   };
 
   const disconnectPlayer = (playerToDisconnect) => {
-    const roomUpdated = roomData.filter((player) => player.id !== playerToDisconnect);
+    const roomUpdated = roomData.filter(
+      (player) => player.id !== playerToDisconnect
+    );
     console.log(roomUpdated);
     console.log(roomData);
     setRoomData(roomUpdated);
@@ -166,53 +177,57 @@ const Room = () => {
     }
     return (
       <>
-        <div className='d-flex justify-content-around'>
-          {
-            config[0].users.length !== 0 && config[0].users.map((player) => (
+        <div className="d-flex justify-content-around">
+          {config[0].users.length !== 0 &&
+            config[0].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
                 <span>
                   <p>{player.playerName}</p>
                 </span>
               </div>
-            ))
-          }
+            ))}
         </div>
-        <div className='d-flex justify-content-around'>
-          {
-            config[1].users.length !== 0 && config[1].users.map((player) => (
+        <div className="d-flex justify-content-around">
+          {config[1].users.length !== 0 &&
+            config[1].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
                 <span>
                   <p>{player.playerName}</p>
                 </span>
               </div>
-            ))
-          }
+            ))}
         </div>
-        <div className='d-flex flex-column justify-content-around'>
-          {
-            config[2].users.length !== 0 && config[2].users.map((player) => (
+        <div className="d-flex flex-column justify-content-around">
+          {config[2].users.length !== 0 &&
+            config[2].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
                 <span>
                   <p>{player.playerName}</p>
                 </span>
               </div>
-            ))
-          }
+            ))}
         </div>
-        <div className='d-flex flex-column justify-content-around'>
-          {
-            config[3].users.length !== 0 && config[3].users.map((player) => (
+        <div className="d-flex flex-column justify-content-around">
+          {config[3].users.length !== 0 &&
+            config[3].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
                 <span>
                   <p>{player.playerName}</p>
                 </span>
               </div>
-            ))
-          }
+            ))}
         </div>
       </>
     );
@@ -235,11 +250,15 @@ const Room = () => {
           <div className={reveal ? blockCards : ''}>
             <div>MANO JUGADA</div>
             {cards &&
-            cards?.map((card) => (
-              <button className={card === myCard ? cardSelected : ''} onClick={() => sendCard(card)} key={card}>
-                {card}
-              </button>
-            ))}
+              cards?.map((card) => (
+                <button
+                  className={card === myCard ? cardSelected : ''}
+                  onClick={() => sendCard(card)}
+                  key={card}
+                >
+                  {card}
+                </button>
+              ))}
           </div>
         </div>
         <Modal
@@ -251,6 +270,7 @@ const Room = () => {
             </Button>,
           ]}
           title="¿Con que nombre quieres entrar a la mesa?"
+          className={nameModal}
         >
           <Form form={nameForm} onFinish={handleSubmit}>
             <Form.Item

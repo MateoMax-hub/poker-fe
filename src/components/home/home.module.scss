@@ -1,8 +1,9 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - 5.2rem);
   font-family: 'Roboto', sans-serif;
+  overflow: hidden;
 }
 
 .homeContainer > div:first-child {
@@ -22,10 +23,111 @@
   line-height: 1.6;
   font-family: 'Poppins', sans-serif;
 }
+@keyframes circle {
+  from {transform: rotateZ(0deg)}
+  to {transform: rotateZ(360deg)}
+}
+@keyframes ccircle {
+  from {-webkit-transform: rotateZ(360deg)}
+  to {-webkit-transform: rotateZ(0deg)}
+}
 
 .homeContainer > div:nth-child(2) {
-  background-color: blue;
+  background-color: #0c0a16;
   width: 45%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  & > div {
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    // background-color: red;
+    animation: circle 10s infinite linear; 
+
+
+    & > button:nth-child(1) {
+      top: 12.3rem;
+      left: -1.5rem;
+    }
+    & > button:nth-child(2) {
+      top: 14.7rem;
+      left: 0.2rem;
+    }
+    & > button:nth-child(3) {
+      top: 15.3rem;
+      left: 5.6rem;
+    }
+    & > button:nth-child(4) {
+      top: 12.7rem;
+      left: 13.2rem;
+    }
+    & > button:nth-child(5) {
+      top: 5.3rem;
+      left: 20.9rem;
+    }
+    & > button:nth-child(6) {
+      top: -4.9rem;
+      left: 26.6rem;
+    }
+    & > button:nth-child(7) {
+      top: -12.3rem;
+      left: 27.5rem;
+      opacity: 0;
+    }
+    & > button:nth-child(8) {
+      top: -22.4rem;
+      left: 28.4rem;
+    }
+    & > button:nth-child(9) {
+      top: -35.1rem;
+      left: 26.3rem;
+    }
+    & > button:nth-child(10) {
+      top: -45.7rem;
+      left: 20.7rem;
+    }
+    & > button:nth-child(11) {
+      top: -52.5rem;
+      left: 13.4rem;
+    }
+    & > button:nth-child(12) {
+      top: -55.3rem;
+      left: 5.9rem;
+    }
+    & > button:nth-child(13) {
+      top: -55rem;
+      left: 0.5rem;
+    }
+  
+    & > button {
+      animation: ccircle 10s infinite linear; 
+      position: relative;
+      height: 5rem;
+      width: 3rem;
+      border-radius: 0.6rem;
+      border: 3px solid var(--border);
+      background-color: var(--bgButton);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s;
+      font-weight: 600;
+      font-size: 1.4rem;
+      pointer-events: none;
+  
+      &::before {
+        content: "";
+        position: absolute;
+        height: 3.5rem;
+        width: 1.8rem;
+        border: 2px solid var(--border);
+        border-radius: 0.6rem;
+      }
+    }
+  }
+
 }
 
 .button {
@@ -40,6 +142,10 @@
   border: 0.1rem solid;
   font-family: 'Roboto', sans-serif;
   font-size: large;
+
+  span {
+    color: wheat;
+  }
 }
 
 .button > button:hover {
@@ -47,6 +153,32 @@
   transition: 0.3s;
   color: white;
   background-color: var(--bgButtonHover);
-  border: 0.2rem solid var(--borderButtonHover);
+  border: 0.2rem solid wheat !important;
   font-size: large;
+}
+
+
+.coffee {
+  position: absolute;
+  right: 18%;
+  top: 51.1%;
+  z-index: 99;
+  border-radius: 0.3rem;
+  border: 0.1rem solid var(--bgButtonHover);
+  background-color: var(--border);
+  padding: .5rem;
+  font-size: 2rem;
+}
+
+.wave {
+  position: fixed;
+  bottom: -5rem;
+  width: calc(100vh - 5.2rem);
+  height: 10rem;
+  right: calc(45% - calc(100vh - 4rem));
+  transform: rotateZ(270deg);
+  transform-origin: left;
+  svg path {
+    fill: #0c0a16;
+  }
 }

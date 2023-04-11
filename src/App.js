@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/home/Home';
 import Header from './layout/header/Header';
-import Footer from './layout/footer/Footer';
 import Room from './components/room/Room';
 
 const App = () => {
