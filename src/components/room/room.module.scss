@@ -18,17 +18,6 @@
   border-radius: 1rem;
 }
 
-// .blockCards {
-  
-//   &:hover {
-//     bottom: -5.6rem !important;
-//     pointer-events: none;
-//     & > button {
-//       transform: translateY(0rem) !important;
-//     }
-//   }
-// }
-
 .buttonArea {
   & > .blockCards {
     pointer-events: none;
@@ -245,6 +234,38 @@
           }
         }
       }
+    }
+  }
+}
+
+.nameModal {
+  & > div:nth-child(2) {
+    background-color: var(--bgColor);
+    border: 1px solid wheat;
+
+    & > div:first-child {
+      background: none;
+
+      & > div {
+        color: wheat;
+        font-size: 1.2rem;
+      }
+    }
+
+    & > div:nth-child(2) input{
+      background-color: var(--cardTable);
+      border-color: wheat;
+      color: white;
+      font-size: 1rem;
+    }
+
+    & > div:last-child button{
+      border: 3px solid var(--border);
+      background-color: var(--bgButton);
+      color: black;
+      font-weight: 600;
+      font-size: 1.1rem;
+      height: unset;
     }
   }
 }
