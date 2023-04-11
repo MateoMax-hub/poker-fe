@@ -25,7 +25,7 @@ h6 {
 }
 
 :root {
-  --bgColor: #221c39;
+  --bgColor: #161228;
   --bgCardArea: #1c1731;
   --border: #232245;
   --bgButton: #5f8ab6;
@@ -33,4 +33,7 @@ h6 {
   --borderButtonHover: #374552;
   --bgSelectedCard: #11213e;
   --cardTable: #232245;
+  --footerBg: #19172f;
+  --baseFontColor: wheat;
+  --darkFontColor: black;
 }

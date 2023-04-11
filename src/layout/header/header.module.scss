@@ -1,0 +1,30 @@
+.headerContainer {
+  background-color: var(--footerBg);
+  height: 5rem;
+  border-bottom: 0.2rem solid #21215a;
+  display: flex;
+  align-items: center;
+
+  & > div {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--bgButtonHover);
+    background-color: var(--border);
+    padding: 0 1rem 0 0.5rem;
+    margin-left: 1rem;
+
+    & > h1 {
+      margin-left: .5rem;
+      color: var(--baseFontColor);
+    }
+  }
+}
+
+.selectedCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
