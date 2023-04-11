@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
 .bodyContainer {
   display: flex;
   align-items: center;
@@ -111,7 +109,10 @@
 
       & > div {
         background-color: var(--bgCardArea);
-        background-image: radial-gradient(var(--cardTable) 9px, transparent 10px),
+        background-image: radial-gradient(
+            var(--cardTable) 9px,
+            transparent 10px
+          ),
           repeating-radial-gradient(
             var(--cardTable) 0,
             var(--cardTable) 4px,
