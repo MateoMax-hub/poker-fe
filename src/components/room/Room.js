@@ -6,7 +6,7 @@ const socketIo = io('http://localhost:4000');
 import style from './room.module.scss';
 
 const Room = () => {
-  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard, table } = style;
+  const { bodyContainer, buttonArea, cardArea, userArea, selectedCard, table, cardSelected, blockCards } = style;
   const [myCard, setMyCard] = useState();
   const [roomData, setRoomData] = useState([]);
   const [enterNameModalShow, setEnterNameModalShow] = useState(false);
@@ -45,7 +45,7 @@ const Room = () => {
       }
     });
     socket.current.on('handle hand response', (data) => {
-      setReveal(data.show);
+      resetHands(data.show);
     });
     socket.current.on('player disconnected', (data) => {
       disconnectPlayer(data.player);
@@ -121,6 +121,19 @@ const Room = () => {
         card: undefined,
       }));
       setRoomData(usersWithoutCards);
+      setMyCard(undefined);
+    }
+  };
+
+  const resetHands = (show) => {
+    setReveal(show);
+    if (!show) {
+      const usersWithoutCards = roomData.map((player) => ({
+        ...player,
+        card: undefined,
+      }));
+      setRoomData(usersWithoutCards);
+      setMyCard(undefined);
     }
   };
 
@@ -157,8 +170,10 @@ const Room = () => {
           {
             config[0].users.length !== 0 && config[0].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : ''}</div>
-                <p>{player.playerName}</p>
+                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
               </div>
             ))
           }
@@ -167,8 +182,10 @@ const Room = () => {
           {
             config[1].users.length !== 0 && config[1].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : ''}</div>
-                <p>{player.playerName}</p>
+                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
               </div>
             ))
           }
@@ -177,8 +194,10 @@ const Room = () => {
           {
             config[2].users.length !== 0 && config[2].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : ''}</div>
-                <p>{player.playerName}</p>
+                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
               </div>
             ))
           }
@@ -187,8 +206,10 @@ const Room = () => {
           {
             config[3].users.length !== 0 && config[3].users.map((player) => (
               <div className={userArea} key={player.id}>
-                <div className={selectedCard}>{reveal ? player.card : ''}</div>
-                <p>{player.playerName}</p>
+                <div className={selectedCard}>{reveal ? player.card : (player.card !== undefined ? '✔' : '')}</div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
               </div>
             ))
           }
@@ -198,8 +219,8 @@ const Room = () => {
   };
 
   return (
-    <>
-      <div className={bodyContainer}>
+    <div className={bodyContainer}>
+      <div>
         <div className={table}>
           {handleSitUsers()}
           <div>
@@ -211,12 +232,15 @@ const Room = () => {
           </div>
         </div>
         <div className={buttonArea}>
-          {cards &&
+          <div className={reveal ? blockCards : ''}>
+            <div>MANO JUGADA</div>
+            {cards &&
             cards?.map((card) => (
-              <button onClick={() => sendCard(card)} key={card}>
+              <button className={card === myCard ? cardSelected : ''} onClick={() => sendCard(card)} key={card}>
                 {card}
               </button>
             ))}
+          </div>
         </div>
         <Modal
           open={enterNameModalShow}
@@ -240,7 +264,7 @@ const Room = () => {
           </Form>
         </Modal>
       </div>
-    </>
+    </div>
   );
 };
 export default Room;

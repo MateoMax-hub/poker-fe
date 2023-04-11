@@ -13,7 +13,6 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/room/:id" element={<Room />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };
