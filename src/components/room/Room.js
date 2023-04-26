@@ -2,7 +2,7 @@ import { Button, Form, Input, Modal } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-const socketIo = io('http://localhost:4000');
+const socketIo = io(process.env.REACT_APP_API_URL);
 import style from './room.module.scss';
 
 const Room = () => {
