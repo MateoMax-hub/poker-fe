@@ -8,18 +8,22 @@
 
 .homeContainer > div:first-child {
   background-color: var(--bgColor);
-  width: 55%;
   display: flex;
   flex-direction: column;
-  padding: 3rem 5rem 3rem 5rem;
+  font-size: larger;
+  align-items: center;
+}
+.homeContainer > div:first-child > div {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 8rem 3rem 5rem;
   font-size: larger;
   align-items: center;
 }
 
-.homeContainer > div:first-child > h1 {
-  margin: 3rem 5rem 3rem 2rem;
+.homeContainer > div:first-child > div > h1 {
   color: var(--bgButton);
-  height: 10rem;
+  height: fit-content;
   line-height: 1.6;
   font-family: 'Poppins', sans-serif;
 }
@@ -34,10 +38,17 @@
 
 .homeContainer > div:nth-child(2) {
   background-color: #0c0a16;
-  width: 45%;
   justify-content: center;
   align-items: center;
   display: flex;
+  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+  right: 0;
+  max-width: 50vw;
+  min-width: 50vw;
+  overflow: hidden;
 
   & > div {
     width: 30rem;
@@ -130,7 +141,7 @@
 }
 
 .button {
-  margin-top: 6rem;
+  margin-top: 3vw;
 }
 
 .button > button {
@@ -159,25 +170,37 @@
 
 .coffee {
   position: absolute;
-  right: 18%;
-  top: 51.1%;
+  right: 23%;
+  top: 46.1%;
   z-index: 99;
   border-radius: 0.3rem;
   border: 0.1rem solid var(--bgButtonHover);
   background-color: var(--border);
-  padding: .5rem;
+  padding: 0.5rem;
   font-size: 2rem;
 }
 
 .wave {
+  z-index: 1;
   position: fixed;
-  bottom: -5rem;
-  width: calc(100vh - 5.2rem);
-  height: 10rem;
-  right: calc(45% - calc(100vh - 4rem));
-  transform: rotateZ(270deg);
-  transform-origin: left;
+  bottom: 0;
+  height: 100vh;
+  width: 14rem;
+  right: 45vw;
   svg path {
     fill: #0c0a16;
+  }
+}
+
+@media (max-width: 992px) {
+  .wave,
+  .homeContainer > div:nth-child(2),
+  .coffee {
+    display: none;
+  }
+  .homeContainer > div:first-child > div {
+    height: 100%;
+    justify-content: space-evenly;
+    padding: 3rem 5rem;
   }
 }
