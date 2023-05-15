@@ -1,9 +1,18 @@
 import { Button, Form, Input, Modal } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 const socketIo = io(import.meta.env.VITE_API_URL);
 import style from './room.module.scss';
+import { Cards, CardsToUpdateRoom, MyCard, PlayerNameSubmit, RoomData, RoomPlayersDividedInPositions } from '../../types';
+
+interface AppStates {
+  roomData: RoomData[]
+  myCard: MyCard
+  modalShow: boolean
+  playerName: string
+  reveal: boolean
+};
 
 const Room = () => {
   const {
@@ -16,17 +25,17 @@ const Room = () => {
     blockCards,
     nameModal,
   } = style;
-  const [myCard, setMyCard] = useState();
-  const [roomData, setRoomData] = useState([]);
-  const [enterNameModalShow, setEnterNameModalShow] = useState(false);
-  const [name, setName] = useState('');
-  const [reveal, setReveal] = useState(false);
-  const cards = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕'];
-  const socket = useRef();
+  const [myCard, setMyCard] = useState<AppStates['myCard']>();
+  const [roomData, setRoomData] = useState<AppStates['roomData']>([]);
+  const [enterNameModalShow, setEnterNameModalShow] = useState<AppStates['modalShow']>(false);
+  const [name, setName] = useState<AppStates['playerName']>('');
+  const [reveal, setReveal] = useState<AppStates['reveal']>(false);
+  const cards: Cards[] = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕'];
+  const socket = useRef<Socket>();
   const { id: token } = useParams();
   const [nameForm] = Form.useForm();
 
-  useEffect(() => {
+  useEffect(() => { // Socket<DefaultEventsMap>
     socket.current = socketIo;
     socket.current.on('point response', (data) =>
       updateRoomData(data.sender, data.card, data.senderName)
@@ -35,8 +44,8 @@ const Room = () => {
       updateRoomData(data.sender, data.card, data.name);
     });
     socket.current.on('getOthersDataBe 2', (data) => {
-      if (data.requester !== socket.current.id) {
-        socket.current.emit('getOthersDataFe 3', {
+      if (data.requester !== socket.current?.id) {
+        socket.current?.emit('getOthersDataFe 3', {
           card: myCard,
           requester: data.requester,
           name,
@@ -46,7 +55,7 @@ const Room = () => {
     });
     socket.current.on('connect room response', (data) => {
       if (data.connected) {
-        socket.current.emit('getOthersDataFe 1', {
+        socket.current?.emit('getOthersDataFe 1', {
           room: token,
           socketId: socket.current.id,
           name,
@@ -60,18 +69,18 @@ const Room = () => {
       disconnectPlayer(data.player);
     });
     return () => {
-      socket.current.off('point response');
-      socket.current.off('getOthersDataBe 4');
-      socket.current.off('getOthersDataBe 2');
-      socket.current.off('connect room response');
-      socket.current.off('handle hand response');
-      socket.current.off('player disconnected');
+      socket.current?.off('point response');
+      socket.current?.off('getOthersDataBe 4');
+      socket.current?.off('getOthersDataBe 2');
+      socket.current?.off('connect room response');
+      socket.current?.off('handle hand response');
+      socket.current?.off('player disconnected');
     };
   }, [myCard, name, roomData]);
 
   useEffect(() => {
     if (token && name) {
-      socket.current.emit('connect room', { room: token });
+      socket.current?.emit('connect room', { room: token });
     }
   }, [token, name]);
 
@@ -79,10 +88,10 @@ const Room = () => {
     setEnterNameModalShow(true);
   }, []);
 
-  const sendCard = (point) => {
+  const sendCard = (point: Cards) => {
     setMyCard(point);
-    updateRoomData(socket.current.id, point, name);
-    socket.current.emit('point', {
+    updateRoomData(socket.current?.id, point, name);
+    socket.current?.emit('point', {
       card: point,
       room: token,
       sender: socket.current.id,
@@ -90,7 +99,7 @@ const Room = () => {
     });
   };
 
-  const updateRoomData = (hand, card, playerName) => {
+  const updateRoomData = (hand: string | undefined, card: CardsToUpdateRoom, playerName: string) => {
     const handPlayedFound = roomData.some((player) => player.id === hand);
     if (handPlayedFound) {
       const newHandInserted = roomData.map((player) => {
@@ -102,12 +111,10 @@ const Room = () => {
     setRoomData((prevState) => [...prevState, { id: hand, card, playerName }]);
   };
 
-  const disconnectPlayer = (playerToDisconnect) => {
+  const disconnectPlayer = (playerToDisconnect: string) => {
     const roomUpdated = roomData.filter(
       (player) => player.id !== playerToDisconnect
     );
-    console.log(roomUpdated);
-    console.log(roomData);
     setRoomData(roomUpdated);
   };
 
@@ -116,15 +123,15 @@ const Room = () => {
     setEnterNameModalShow(false);
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: PlayerNameSubmit) => {
     setName(values.name);
     setRoomData([
-      { id: socket.current.id, card: undefined, playerName: values.name },
+      { id: socket.current?.id, card: undefined, playerName: values.name },
     ]);
   };
 
-  const showHands = (show) => {
-    socket.current.emit('handle hand', { show, room: token });
+  const showHands = (show: boolean) => {
+    socket.current?.emit('handle hand', { show, room: token });
     setReveal(show);
     if (!show) {
       const usersWithoutCards = roomData.map((player) => ({
@@ -136,7 +143,7 @@ const Room = () => {
     }
   };
 
-  const resetHands = (show) => {
+  const resetHands = (show: boolean) => {
     setReveal(show);
     if (!show) {
       const usersWithoutCards = roomData.map((player) => ({
@@ -150,7 +157,7 @@ const Room = () => {
 
   const handleSitUsers = () => {
     let initialPos = 'top';
-    const config = [
+    const config: RoomPlayersDividedInPositions[] = [
       { name: 'top', limit: 0, users: [] },
       { name: 'bottom', limit: 0, users: [] },
       { name: 'left', limit: 3, users: [] },
