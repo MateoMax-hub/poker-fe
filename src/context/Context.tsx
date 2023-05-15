@@ -4,14 +4,27 @@ interface Props {
   children: React.ReactNode
 }
 
-const GlobalContext = createContext('')
+interface ProviderData {
+  isDarkThemeOn?: boolean
+  setisDarkThemeOn?: Function
+  setLocale?: Function
+  locale?: string
+}
+
+export const GlobalContext = createContext<ProviderData>({})
 
 const Context = ({ children }: Props) => {
   const [isDarkThemeOn, setisDarkThemeOn] = useState<boolean>(true);
+  const [locale, setLocale] = useState<string>('');
 
   return (
     <>
-      <GlobalContext.Provider>
+      <GlobalContext.Provider value={{
+        isDarkThemeOn,
+        setisDarkThemeOn,
+        locale,
+        setLocale,
+      }}>
         { children }
       </GlobalContext.Provider>
     </>

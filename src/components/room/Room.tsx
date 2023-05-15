@@ -35,7 +35,7 @@ const Room = () => {
   const { id: token } = useParams();
   const [nameForm] = Form.useForm();
 
-  useEffect(() => { // Socket<DefaultEventsMap>
+  useEffect(() => {
     socket.current = socketIo;
     socket.current.on('point response', (data) =>
       updateRoomData(data.sender, data.card, data.senderName)
