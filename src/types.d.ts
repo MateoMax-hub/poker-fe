@@ -1,6 +1,6 @@
 export type Cards = 0 | 1 | 2 | 3 | 5 | 8 | 13 | 21 | 34 | 55 | 89 | '?' | '☕'
 export type CardsToUpdateRoom = Cards | undefined
-export type MyCard = Cards | string | undefined
+export type MyCard = Cards | undefined
 
 export interface PlayerNameSubmit {
     name: string
