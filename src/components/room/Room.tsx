@@ -120,7 +120,6 @@ const Room = () => {
 
   const submitNameForm = () => {
     nameForm.submit();
-    setEnterNameModalShow(false);
   };
 
   const handleSubmit = (values: PlayerNameSubmit) => {
@@ -128,6 +127,7 @@ const Room = () => {
     setRoomData([
       { id: socket.current?.id, card: undefined, playerName: values.name },
     ]);
+    setEnterNameModalShow(false);
   };
 
   const showHands = (show: boolean) => {
