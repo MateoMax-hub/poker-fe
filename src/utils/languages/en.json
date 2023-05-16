@@ -1,0 +1,10 @@
+{
+    "MAIN_DESCRIPTION": "Scrum Poker for agile development teams",
+    "BTN_CREATE_ROOM": "Create room",
+    "SAVE_PLAYER_NAME": "Save",
+    "NAME_MODAL_TITLE": "Tell the others players your name",
+    "NAME_INPUT_REQUIRE_MSG": "Please input your name here",
+    "HAND_PLAYED": "HAND PLAYED",
+    "RESET_BUTTON": "Reset",
+    "SHOW_CARDS": "Show cards"
+}
