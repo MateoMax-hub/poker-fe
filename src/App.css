@@ -1,19 +1,27 @@
 .d-flex {
-    display: flex;
+  display: flex;
 }
 
 .justify-content-center {
-    justify-content: center;
+  justify-content: center;
 }
 
 .justify-content-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 .align-items-center {
-    align-items: center;
+  align-items: center;
 }
 
 .flex-column {
-    flex-direction: column;
+  flex-direction: column;
+}
+
+.ant-switch.ant-switch-checked {
+  background: red;
+}
+
+.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+  background-color: red;
 }
