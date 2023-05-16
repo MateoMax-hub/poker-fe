@@ -6,28 +6,26 @@ interface Props {
 
 interface ProviderData {
   isDarkThemeOn?: boolean
-  setisDarkThemeOn?: Function
+  setIsDarkThemeOn?: Function
   setLocale?: Function
   locale?: string
 }
 
-export const GlobalContext = createContext<ProviderData>({})
+export const UserConfigContext = createContext<ProviderData>({})
 
 const Context = ({ children }: Props) => {
-  const [isDarkThemeOn, setisDarkThemeOn] = useState<boolean>(true);
+  const [isDarkThemeOn, setIsDarkThemeOn] = useState<boolean>(true);
   const [locale, setLocale] = useState<string>('');
 
   return (
-    <>
-      <GlobalContext.Provider value={{
-        isDarkThemeOn,
-        setisDarkThemeOn,
-        locale,
-        setLocale,
-      }}>
-        { children }
-      </GlobalContext.Provider>
-    </>
+    <UserConfigContext.Provider value={{
+      isDarkThemeOn,
+      setIsDarkThemeOn,
+      locale,
+      setLocale,
+    }}>
+      { children }
+    </UserConfigContext.Provider>
   )
 }
 export default Context

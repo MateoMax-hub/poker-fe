@@ -1,10 +1,7 @@
-import { useContext } from 'react';
 import style from './header.module.scss';
-import { GlobalContext } from '../../context/Context';
 
 const Header = () => {
   const { headerContainer, selectedCard } = style;
-  console.log(useContext(GlobalContext));
 
   return (
     <div className={headerContainer}>

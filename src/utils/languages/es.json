@@ -1,0 +1,10 @@
+{
+    "MAIN_DESCRIPTION": "Planning Poker para equipos de desarrollo con metodologia agile",
+    "BTN_CREATE_ROOM": "Crear sala",
+    "SAVE_PLAYER_NAME": "Guardar",
+    "NAME_MODAL_TITLE": "¿Con que nombre quieres entrar a la mesa?",
+    "NAME_INPUT_REQUIRE_MSG": "Por favor rellenar con un nombre",
+    "HAND_PLAYED": "MANO JUGADA",
+    "RESET_BUTTON": "Reiniciar",
+    "SHOW_CARDS": "Revelar cartas"
+}
