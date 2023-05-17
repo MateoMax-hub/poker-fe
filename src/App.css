@@ -17,3 +17,7 @@
 .flex-column {
     flex-direction: column;
 }
+
+.d-none {
+    display: none;
+}

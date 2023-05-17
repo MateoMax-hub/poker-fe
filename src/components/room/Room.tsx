@@ -28,7 +28,188 @@ const Room = () => {
   } = style;
   const pageTextContent = useLocale();
   const [myCard, setMyCard] = useState<AppStates['myCard']>();
-  const [roomData, setRoomData] = useState<AppStates['roomData']>([]);
+  const [roomData, setRoomData] = useState<AppStates['roomData']>([
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+    {
+      id: undefined,
+      playerName: 'awd',
+      card: 5
+    },
+  ]);
   const [enterNameModalShow, setEnterNameModalShow] = useState<AppStates['modalShow']>(false);
   const [name, setName] = useState<AppStates['playerName']>('');
   const [reveal, setReveal] = useState<AppStates['reveal']>(false);
@@ -126,9 +307,9 @@ const Room = () => {
 
   const handleSubmit = (values: PlayerNameSubmit) => {
     setName(values.name);
-    setRoomData([
-      { id: socket.current?.id, card: undefined, playerName: values.name },
-    ]);
+    // setRoomData([
+    //   { id: socket.current?.id, card: undefined, playerName: values.name },
+    // ]);
     setEnterNameModalShow(false);
   };
 
@@ -212,7 +393,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around">
+        <div className="d-flex flex-column justify-content-around align-items-center">
           {config[2].users.length !== 0 &&
             config[2].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -225,9 +406,22 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around">
+        <div className="d-flex flex-column justify-content-around align-items-center">
           {config[3].users.length !== 0 &&
             config[3].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
+              </div>
+            ))}
+        </div>
+        <div className="justify-content-around d-none">
+          {roomData.length !== 0 &&
+            roomData.map((player) => (
               <div className={userArea} key={player.id}>
                 <div className={selectedCard}>
                   {reveal ? player.card : player.card !== undefined ? '✔' : ''}
