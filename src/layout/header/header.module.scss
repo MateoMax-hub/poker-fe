@@ -44,20 +44,5 @@
 }
 
 .switchBtn {
-  background: rgb(58, 58, 65);
-}
-
-.select {
-  width: 10rem;
-  height: 2rem;
-  border-radius: 0.6rem;
-  border: 0.1rem solid #374552;
-}
-
-.select:hover {
-  transform: scale3d(1.1rem);
-}
-
-.select:focus-visible {
-  outline: none;
+  background: #2b2e46;
 }

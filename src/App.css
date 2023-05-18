@@ -19,9 +19,9 @@
 }
 
 .ant-switch.ant-switch-checked {
-  background: red;
+  background: #384391;
 }
 
 .ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
-  background-color: red;
+  background-color: #384391;
 }
