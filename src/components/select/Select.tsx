@@ -18,6 +18,11 @@ const Select = ({
 }: selectProps) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
+  const closeSelect = (option: Option) => {
+    onChange(option);
+    setShowOptions(false);
+  };
+
   return (
     <div className={selectContainer}>
       <div onClick={() => setShowOptions(!showOptions)} className={select}>
@@ -28,10 +33,7 @@ const Select = ({
         <div className={selectOptions}>
           {options.map((option) => (
             <div
-              onClick={() => {
-                onChange(option);
-                setShowOptions(false);
-              }}
+              onClick={() => closeSelect(option)}
               key={option.value}
               className={optionLanguage}
             >
