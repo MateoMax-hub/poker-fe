@@ -24,7 +24,11 @@ const Select = ({
   };
 
   return (
-    <div className={selectContainer}>
+    <div
+      className={selectContainer}
+      onBlur={() => setShowOptions(false)}
+      tabIndex={2}
+    >
       <div onClick={() => setShowOptions(!showOptions)} className={select}>
         <span>{selectedValue ? selectedValue.label : placeholder}</span>
         <span>v</span>
