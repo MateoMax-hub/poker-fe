@@ -4,8 +4,9 @@
   border-bottom: 0.2rem solid #21215a;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  & > div {
+  & > div:first-child {
     height: 3rem;
     display: flex;
     align-items: center;
@@ -16,9 +17,22 @@
     margin-left: 1rem;
 
     & > h1 {
-      margin-left: .5rem;
+      margin-left: 0.5rem;
       color: var(--baseFontColor);
     }
+  }
+
+  & > div:nth-child(2) {
+    height: 2.7rem;
+    width: 14.3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.3rem;
+    border: 0.1rem solid var(--bgButtonHover);
+    background-color: var(--bgSelect);
+    padding: 0 1rem 0 0.5rem;
+    margin-right: 2rem;
+    justify-content: space-around;
   }
 }
 
@@ -27,4 +41,8 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+}
+
+.switchBtn {
+  background: #2b2e46;
 }
