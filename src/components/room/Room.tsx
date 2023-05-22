@@ -5,6 +5,7 @@ import io, { Socket } from 'socket.io-client';
 const socketIo = io(import.meta.env.VITE_API_URL);
 import style from './room.module.scss';
 import { Cards, CardsToUpdateRoom, MyCard, PlayerNameSubmit, RoomData, RoomPlayersDividedInPositions } from '../../types';
+import useLocale from '../../utils/hooks/useLocale';
 
 interface AppStates {
   roomData: RoomData[]
@@ -25,6 +26,7 @@ const Room = () => {
     blockCards,
     nameModal,
   } = style;
+  const pageTextContent = useLocale();
   const [myCard, setMyCard] = useState<AppStates['myCard']>();
   const [roomData, setRoomData] = useState<AppStates['roomData']>([]);
   const [enterNameModalShow, setEnterNameModalShow] = useState<AppStates['modalShow']>(false);
@@ -248,14 +250,14 @@ const Room = () => {
           <div>
             <div>
               <button onClick={() => showHands(!reveal)}>
-                {reveal ? 'Reiniciar' : 'Revelar cartas'}
+                {reveal ? pageTextContent?.RESET_BUTTON : pageTextContent?.SHOW_CARDS}
               </button>
             </div>
           </div>
         </div>
         <div className={buttonArea}>
           <div className={reveal ? blockCards : ''}>
-            <div>MANO JUGADA</div>
+            <div>{pageTextContent?.HAND_PLAYED}</div>
             {cards &&
               cards?.map((card) => (
                 <button
@@ -273,17 +275,17 @@ const Room = () => {
           closable={false}
           footer={[
             <Button onClick={submitNameForm} key="1">
-              Guardar
+              {pageTextContent?.SAVE_PLAYER_NAME}
             </Button>,
           ]}
-          title="¿Con que nombre quieres entrar a la mesa?"
+          title={pageTextContent?.NAME_MODAL_TITLE}
           className={nameModal}
         >
           <Form form={nameForm} onFinish={handleSubmit}>
             <Form.Item
               name="name"
               rules={[
-                { required: true, message: 'Por favor rellenar con un nombre' },
+                { required: true, message: pageTextContent?.NAME_INPUT_REQUIRE_MSG },
               ]}
             >
               <Input />

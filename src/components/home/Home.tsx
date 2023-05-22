@@ -1,10 +1,12 @@
 import { Button, Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
 import style from './home.module.scss';
+import useLocale from '../../utils/hooks/useLocale';
 
 const { homeContainer, button, coffee, wave } = style;
 
 const Home = () => {
+  const pageTextContent = useLocale();
   const cards = [0, 1, 2, 3, 5, 8, 13, 13, 21, 34, 55, 89, '?'];
   const getRandomRoomId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
@@ -16,10 +18,10 @@ const Home = () => {
         <Col lg={13} md={24}>
           <div className='w-100 h-100'>
             <h1>
-              Planning Poker para equipos de desarrollo con metodologia agile
+              {pageTextContent?.MAIN_DESCRIPTION}
             </h1>
             <Link className={button} to={`/room/${getRandomRoomId()}`}>
-              <Button>Crear sala</Button>
+              <Button>{pageTextContent?.BTN_CREATE_ROOM}</Button>
             </Link>
           </div>
         </Col>
