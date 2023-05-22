@@ -37,4 +37,8 @@ h6 {
   --baseFontColor: wheat;
   --darkFontColor: black;
   --bgSelect: #121226;
+  --borderSelect: #222442;
+  --arrowSelect: gray;
+  --selectOptions: white;
+  --optionHoverBg: #1b1b38;
 }
