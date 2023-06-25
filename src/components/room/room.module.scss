@@ -45,6 +45,8 @@
     }
   }
   & > div {
+    max-height: 80vh;
+    overflow-y: auto;
     & > div {
       display: none;
     }
@@ -53,13 +55,13 @@
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
-    bottom: -5.6rem;
+    top: calc(100vh - 9rem);
     left: 0;
     transition: 0.3s;
 
     &:hover {
       transition: 0.3s;
-      bottom: -2.5rem;
+      top: calc(100vh - 13rem - 6px);
     }
 
     & > button {
@@ -270,12 +272,52 @@
   }
 }
 
+@media (max-width: 576px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 45rem - 30px);
+    }
+  }
+}
+@media (max-width: 720px) and (min-width: 576px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 36rem - 24px);
+    }
+  }
+}
+@media (max-width: 1008px) and (min-width: 720px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 27rem - 18px);
+    }
+  }
+}
+@media (min-width: 1008px) and (max-width: 1100px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 19rem - 12px);
+    }
+  }
+}
+
 @media (max-width: 1100px) {
   .buttonArea > div {
     justify-content: center;
+    background: rebeccapurple;
+    flex-wrap: wrap;
+    padding: 1rem 0;
 
     & > button {
-      margin: 5rem 0rem 3rem 0rem;
+      margin: 0 2rem 1rem 2rem;
     }
   }
 
