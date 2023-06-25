@@ -30,7 +30,6 @@ const SwitchTheme = () => {
     } else {
       document.documentElement.setAttribute("data-theme", "light");
     }
-    console.log(e)
   }
 
   return (
