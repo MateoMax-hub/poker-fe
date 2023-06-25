@@ -212,7 +212,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around">
+        <div className="d-flex flex-column justify-content-around align-items-center">
           {config[2].users.length !== 0 &&
             config[2].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -225,9 +225,22 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around">
+        <div className="d-flex flex-column justify-content-around align-items-center">
           {config[3].users.length !== 0 &&
             config[3].users.map((player) => (
+              <div className={userArea} key={player.id}>
+                <div className={selectedCard}>
+                  {reveal ? player.card : player.card !== undefined ? '✔' : ''}
+                </div>
+                <span>
+                  <p>{player.playerName}</p>
+                </span>
+              </div>
+            ))}
+        </div>
+        <div className="justify-content-around d-none">
+          {roomData.length !== 0 &&
+            roomData.map((player) => (
               <div className={userArea} key={player.id}>
                 <div className={selectedCard}>
                   {reveal ? player.card : player.card !== undefined ? '✔' : ''}

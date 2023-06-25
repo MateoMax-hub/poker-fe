@@ -45,6 +45,8 @@
     }
   }
   & > div {
+    max-height: 80vh;
+    overflow-y: auto;
     & > div {
       display: none;
     }
@@ -53,13 +55,13 @@
     flex-direction: row;
     justify-content: space-between;
     position: fixed;
-    bottom: -5.6rem;
+    top: calc(100vh - 9rem);
     left: 0;
     transition: 0.3s;
 
     &:hover {
       transition: 0.3s;
-      bottom: -2.5rem;
+      top: calc(100vh - 13rem - 6px);
     }
 
     & > button {
@@ -182,7 +184,7 @@
       grid-column-start: 1;
       grid-row: 1 / 4;
     }
-    &:nth-child(5) {
+    &:nth-child(6) {
       grid-column: 2;
       grid-row: 2;
       display: flex;
@@ -267,5 +269,97 @@
       font-size: 1.1rem;
       height: unset;
     }
+  }
+}
+
+@media (max-width: 576px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 45rem - 30px);
+    }
+  }
+}
+@media (max-width: 720px) and (min-width: 576px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 36rem - 24px);
+    }
+  }
+}
+@media (max-width: 1008px) and (min-width: 720px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 27rem - 18px);
+    }
+  }
+}
+@media (min-width: 1008px) and (max-width: 1100px) {
+  .buttonArea > div {
+    top: calc(100vh - 5rem);
+
+    &:hover {
+      top: calc(100vh - 19rem - 12px);
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .buttonArea > div {
+    justify-content: center;
+    background: rebeccapurple;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+
+    & > button {
+      margin: 0 2rem 1rem 2rem;
+    }
+  }
+
+  .table {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+
+      &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+        display: none;
+      }
+      &:nth-child(6) {
+        display: flex;
+        margin: 2rem 0 1rem 0;
+        height: 7rem;
+      }
+      &:nth-child(5) {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: calc(11rem * 3);
+        justify-content: flex-start;
+        margin-bottom: 7rem;
+      }
+    }
+  }
+
+  .bodyContainer {
+    min-height: calc(100vh - 5.2rem);
+    height: unset;
+  }
+
+  .userArea {
+    width: 7rem;
+    margin: 1rem 2rem;
+  }
+  .selectedCard {
+    width: 4rem;
+    height: 5rem;
   }
 }

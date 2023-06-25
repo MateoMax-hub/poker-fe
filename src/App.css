@@ -25,3 +25,7 @@
 .ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
   background-color: #384391;
 }
+
+.d-none {
+    display: none;
+}
