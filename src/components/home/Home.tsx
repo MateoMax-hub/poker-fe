@@ -38,7 +38,7 @@ const Home = () => {
       </Row>
       <div className={coffee}>☕</div>
       <div className={wave}>
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{height: '100%', width: '100%', zIndex: '-1'}}><path d="M213.19,-0.00 C41.98,40.84 435.89,75.29 202.98,149.60 L500.00,149.60 L500.00,-0.00 Zca" style={{stroke: 'none', fill: '#0c0a16'}}></path></svg>
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{height: '100%', width: '100%', zIndex: '-1'}}><path d="M213.19,-0.00 C41.98,40.84 435.89,75.29 202.98,149.60 L500.00,149.60 L500.00,-0.00 Zca" style={{stroke: 'none'}}></path></svg>
       </div>
     </>
   );
