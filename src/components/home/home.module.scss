@@ -1,7 +1,7 @@
 .homeContainer {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 5.2rem);
+  height: calc(100vh - 5.2rem + 0.1px);
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
 }
@@ -45,7 +45,7 @@
 }
 
 .homeContainer > div:nth-child(2) {
-  background-color: #0c0a16;
+  background-color: var(--home-carrusel-bg);
   justify-content: center;
   align-items: center;
   display: flex;
@@ -125,7 +125,7 @@
       width: 3rem;
       border-radius: 0.6rem;
       border: 3px solid var(--border);
-      background-color: var(--bgButton);
+      background-color: var(--home-carrusel-btn-bg);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -153,14 +153,15 @@
 .button > button {
   width: 20rem;
   height: 4rem;
-  background-color: var(--bgButton);
+  background-color: var(--home-create-room-btn);
   border-radius: 0.3rem;
   border: 0.1rem solid;
+  border-color: var(--home-create-room-btn-border);
   font-family: 'Roboto', sans-serif;
   font-size: large;
 
   span {
-    color: wheat;
+    color: var(--home-create-room-btn-text);
   }
 }
 
@@ -180,7 +181,7 @@
   z-index: 99;
   border-radius: 0.3rem;
   border: 0.1rem solid var(--bgButtonHover);
-  background-color: var(--border);
+  background-color: var(--home-carrusel-btn-bg);
   padding: 0.5rem;
   font-size: 2rem;
 }
@@ -193,7 +194,7 @@
   width: 14rem;
   right: 45vw;
   svg path {
-    fill: #0c0a16;
+    fill: var(--home-carrusel-bg);
   }
 }
 

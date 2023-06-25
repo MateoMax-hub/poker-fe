@@ -6,13 +6,13 @@
 }
 
 .select {
-  color: var(--selectOptions);
-  border: 0.1rem var(--borderSelect) solid;
+  color: var(--bgButton);
+  border: 0.1rem #2a4075 solid;
   width: 9rem;
   height: 1.5rem;
   cursor: pointer;
   position: relative;
-  background-color: var(--bgSelect);
+  background-color: var(--language-select-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,7 +23,7 @@
 
   & span:last-child {
     margin-right: 1rem;
-    color: var(--arrowSelect);
+    color: var(--bgButton);
     font-weight: bold;
     font-size: medium;
   }

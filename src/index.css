@@ -25,15 +25,15 @@ h6 {
 }
 
 :root {
-  --bgColor: #161228;
+  --bgColor: white;
   --bgCardArea: #1c1731;
   --border: #232245;
-  --bgButton: #5f8ab6;
+  --bgButton: #1a2935;
   --bgButtonHover: #3f5e7c;
   --borderButtonHover: #374552;
   --bgSelectedCard: #11213e;
   --cardTable: #232245;
-  --footerBg: #19172f;
+  --footerBg: white;
   --baseFontColor: wheat;
   --darkFontColor: black;
   --bgSelect: #121226;
@@ -41,4 +41,31 @@ h6 {
   --arrowSelect: gray;
   --selectOptions: white;
   --optionHoverBg: #1b1b38;
+  --home-create-room-btn: rgb(57, 147, 255);
+  --home-create-room-btn-text: #fff;
+  --home-create-room-btn-border: transparent;
+  --home-carrusel-bg: #558eff;
+  --home-carrusel-btn-bg: #b3d9f7;
+  --header-border-color: #558eff;
+  --header-brand-bg: #fff;
+  --header-brand-color: #558eff;
+  --header-brand-border-color: transparent;
+  --utilities-btn-bg: #558eff;
+  --language-select-bg: #fff;
+}
+[data-theme="dark"] * {
+  --bgColor: #161228;
+  --bgButton: #5f8ab6;
+  --home-create-room-btn: #5f8ab6;
+  --home-create-room-btn-text: wheat;
+  --home-create-room-btn-border: black;
+  --home-carrusel-bg: #0c0a16;
+  --home-carrusel-btn-bg: #5f8ab6;
+  --footerBg: #19172f;
+  --header-border-color: #21215a;
+  --header-brand-bg: #232245;
+  --header-brand-color: wheat;
+  --header-brand-border-color: #3f5e7c;
+  --utilities-btn-bg: #09091d;
+  --language-select-bg: #121226;
 }

@@ -1,7 +1,7 @@
 .headerContainer {
   background-color: var(--footerBg);
   height: 5rem;
-  border-bottom: 0.2rem solid #21215a;
+  border-bottom: 0.2rem solid var(--header-border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,26 +11,24 @@
     display: flex;
     align-items: center;
     border-radius: 0.3rem;
-    border: 0.1rem solid var(--bgButtonHover);
-    background-color: var(--border);
+    border: 0.1rem solid var(--header-brand-border-color);
+    background-color: var(--header-brand-bg);
     padding: 0 1rem 0 0.5rem;
     margin-left: 1rem;
 
     & > h1 {
       margin-left: 0.5rem;
-      color: var(--baseFontColor);
+      color: var(--header-brand-color);
     }
   }
 
   & > div:nth-child(2) {
+    padding: 0.4rem 0.1rem 0.4rem 2rem;
     height: 2.7rem;
-    width: 14.3rem;
     display: flex;
     align-items: center;
-    border-radius: 0.3rem;
-    border: 0.1rem solid var(--bgButtonHover);
-    background-color: var(--bgSelect);
-    padding: 0 1rem 0 0.5rem;
+    border-radius: 2rem;
+    background-color: var(--utilities-btn-bg);
     margin-right: 2rem;
     justify-content: space-around;
   }
@@ -41,8 +39,4 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-}
-
-.switchBtn {
-  background: #2b2e46;
 }

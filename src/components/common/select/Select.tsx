@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import style from './select.module.scss';
-import { Option } from '../../types';
+import { Option } from '../../../types';
 const { select, selectOptions, optionLanguage, selectContainer } = style;
 
 interface selectProps {
   placeholder?: string;
   options: Option[];
   onChange: (selection: Option) => void;
-  selectedValue: Option | null;
+  selectedValue: Option;
 }
 
 const Select = ({
@@ -30,7 +30,7 @@ const Select = ({
       tabIndex={2}
     >
       <div onClick={() => setShowOptions(!showOptions)} className={select}>
-        <span>{selectedValue ? selectedValue.label : placeholder}</span>
+        <span>{selectedValue ? selectedValue?.label : placeholder}</span>
         <span>v</span>
       </div>
       {showOptions && (
