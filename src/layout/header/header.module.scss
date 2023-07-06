@@ -40,3 +40,78 @@
   align-items: center;
   font-size: 1.5rem;
 }
+
+.utilitiesModal {
+  display: none;
+}
+
+@media (max-width: 742px) {
+  .utilitiesModal {
+    display: flex;
+    margin-right: 2rem;
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 24px;
+      background-color: var(--utilities-btn-bg);
+      color: #5f8ab6;
+      border: 0.1rem #2a4075 solid;
+      border-radius: 0.5rem;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+      span {
+        transform: rotateZ(30deg);
+      }
+    }
+  }
+}
+
+.settingsModal {
+  & > div:nth-child(2) {
+    background-color: var(--bgColor);
+    border: 1px solid wheat;
+
+
+    & > div {
+      background-color: var(--bgColor);
+
+      & > div {
+        color: wheat;
+        font-size: 1.2rem;
+      }
+    }
+
+    & > div:nth-child(2) input{
+      background-color: var(--cardTable);
+      border-color: wheat;
+      color: white;
+      font-size: 1rem;
+    }
+
+    & > div:last-child button{
+      border: 3px solid var(--border);
+      background-color: var(--bgButton);
+      color: black;
+      font-weight: 600;
+      font-size: 1.1rem;
+      height: unset;
+    }
+  }
+}
+
+@media (max-width: 458px) {
+  .brand {
+    display: none;
+  }
+  .headerContainer > div:first-child {
+    padding: 0 0.5rem;
+  }
+}

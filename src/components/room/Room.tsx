@@ -25,6 +25,7 @@ const Room = () => {
     cardSelected,
     blockCards,
     nameModal,
+    tableFull,
   } = style;
   const pageTextContent = useLocale();
   const [myCard, setMyCard] = useState<AppStates['myCard']>();
@@ -32,6 +33,7 @@ const Room = () => {
   const [enterNameModalShow, setEnterNameModalShow] = useState<AppStates['modalShow']>(false);
   const [name, setName] = useState<AppStates['playerName']>('');
   const [reveal, setReveal] = useState<AppStates['reveal']>(false);
+  const [isTableFull, setIsTableFull] = useState(false);
   const cards: Cards[] = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕'];
   const socket = useRef<Socket>();
   const { id: token } = useParams();
@@ -70,6 +72,8 @@ const Room = () => {
     socket.current.on('player disconnected', (data) => {
       disconnectPlayer(data.player);
     });
+
+    setIsTableFull(roomData.length > 16)
     return () => {
       socket.current?.off('point response');
       socket.current?.off('getOthersDataBe 4');
@@ -186,7 +190,7 @@ const Room = () => {
     }
     return (
       <>
-        <div className="d-flex justify-content-around">
+        <div className={`justify-content-around ${isTableFull ? 'd-none' : 'd-flex'}`}>
           {config[0].users.length !== 0 &&
             config[0].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -199,7 +203,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex justify-content-around">
+        <div className={`justify-content-around ${isTableFull ? 'd-none' : 'd-flex'}`}>
           {config[1].users.length !== 0 &&
             config[1].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -212,7 +216,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around align-items-center">
+        <div className={`flex-column justify-content-around align-items-center ${isTableFull ? 'd-none' : 'd-flex'}`}>
           {config[2].users.length !== 0 &&
             config[2].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -225,7 +229,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="d-flex flex-column justify-content-around align-items-center">
+        <div className={`flex-column justify-content-around align-items-center ${isTableFull ? 'd-none' : 'd-flex'}`}>
           {config[3].users.length !== 0 &&
             config[3].users.map((player) => (
               <div className={userArea} key={player.id}>
@@ -238,7 +242,7 @@ const Room = () => {
               </div>
             ))}
         </div>
-        <div className="justify-content-around d-none">
+        <div className={`justify-content-around ${isTableFull ? '' : 'd-none'}`}>
           {roomData.length !== 0 &&
             roomData.map((player) => (
               <div className={userArea} key={player.id}>
@@ -258,7 +262,7 @@ const Room = () => {
   return (
     <div className={bodyContainer}>
       <div>
-        <div className={table}>
+        <div className={isTableFull ? `${table} ${tableFull}` : table}>
           {handleSitUsers()}
           <div>
             <div>
