@@ -1,3 +1,22 @@
 .switchBtn {
   background: #2b2e46;
 }
+
+@media (max-width: 742px) {
+  .utilitiesContainer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 356px) {
+  .utilitiesContainerFromModal {
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+}
+
+.utilitiesContainerFromModal {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

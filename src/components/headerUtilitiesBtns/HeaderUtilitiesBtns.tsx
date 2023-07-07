@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Option } from '../../types';
 import Select from '../common/select/Select';
 import SwitchTheme from '../switchTheme/SwitchTheme';
+import style from './HeaderUtilitiesBtns.module.scss';
 
 const options: Option[] = [
   {
@@ -30,11 +31,12 @@ const options: Option[] = [
   },
 ];
 
-const HeaderUtilitiesBtns = () => {
+const HeaderUtilitiesBtns = (props: {isFromSettingsModal?: boolean}) => {
   const [selectedLanguage, setSelectedLanguage] = useState<Option>(options[0]);
+  const { utilitiesContainer, utilitiesContainerFromModal } = style;
 
   return (
-    <div>
+    <div className={!props.isFromSettingsModal ? utilitiesContainer : utilitiesContainerFromModal}>
       <Select
         options={options}
         onChange={(selection: Option) => setSelectedLanguage(selection)}

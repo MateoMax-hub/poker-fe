@@ -16,7 +16,7 @@
 .homeContainer > div:first-child > div {
   display: flex;
   flex-direction: column;
-  padding: 3rem 8rem 3rem 5rem;
+  padding: 3rem 148px 3rem 5rem;
   font-size: larger;
   align-items: center;
 }
@@ -195,7 +195,7 @@
 .wave {
   z-index: 1;
   position: fixed;
-  bottom: 0;
+  bottom: -1.7px;
   height: calc(100vh - 5.1rem);
   width: 14rem;
   right: 45vw;
@@ -214,5 +214,11 @@
     height: 100%;
     justify-content: space-evenly;
     padding: 3rem 5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .homeContainer > div:first-child > div > h1 {
+    font-size: 30px;
   }
 }

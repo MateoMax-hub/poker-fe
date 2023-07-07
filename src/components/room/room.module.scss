@@ -45,8 +45,6 @@
     }
   }
   & > div {
-    max-height: 80vh;
-    overflow-y: auto;
     & > div {
       display: none;
     }
@@ -77,6 +75,7 @@
       transition: 0.3s;
       font-weight: 600;
       font-size: 2.4rem;
+      z-index: 1;
 
       &:hover {
         transition: 0.3s;
@@ -91,6 +90,33 @@
         border: 2px solid var(--border);
         border-radius: 0.6rem;
       }
+    }
+  }
+}
+
+.table.tableFull {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  height: 100%;
+
+  & > div:nth-child(6) {
+    display: flex;
+    margin: 2rem 0 1rem 0;
+    height: 7rem;
+  }
+  & > div:nth-child(5) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 33rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+    height: 100%;
+
+    & > div {
+      width: 7rem;
+      margin: 1rem 2rem;
     }
   }
 }
@@ -275,28 +301,43 @@
 @media (max-width: 576px) {
   .buttonArea > div {
     top: calc(100vh - 5rem);
+    max-height: 12rem;
+    overflow-y: auto;
 
     &:hover {
-      top: calc(100vh - 45rem - 30px);
+      top: calc(100vh - 12rem);
     }
+  }
+  .cardSelected:hover {
+    transform: scale(1.1) !important;
   }
 }
 @media (max-width: 720px) and (min-width: 576px) {
   .buttonArea > div {
+    max-height: 12rem;
+    overflow-y: auto;
     top: calc(100vh - 5rem);
 
     &:hover {
-      top: calc(100vh - 36rem - 24px);
+      top: calc(100vh - 12rem);
     }
+  }
+  .cardSelected:hover {
+    transform: scale(1.1) !important;
   }
 }
 @media (max-width: 1008px) and (min-width: 720px) {
   .buttonArea > div {
     top: calc(100vh - 5rem);
+    max-height: 12rem;
+    overflow-y: auto;
 
     &:hover {
-      top: calc(100vh - 27rem - 18px);
+      top: calc(100vh - 12rem);
     }
+  }
+  .cardSelected:hover {
+    transform: scale(1.1) !important;
   }
 }
 @media (min-width: 1008px) and (max-width: 1100px) {
@@ -308,11 +349,20 @@
     }
   }
 }
+@media (max-width: 549px) {
+  .table > div:nth-child(5){
+    width: 22rem!important;
+  }
+}
 
 @media (max-width: 1100px) {
   .buttonArea > div {
     justify-content: center;
-    background: rebeccapurple;
+    border: 0.2rem solid var(--border);
+    background-color: var(--bgCardArea);
+    background-image: radial-gradient(var(--cardTable) 9px, transparent 10px), repeating-radial-gradient(var(--cardTable) 0, var(--cardTable) 4px, transparent 5px, transparent 20px, var(--cardTable) 21px, var(--cardTable) 25px, transparent 26px, transparent 50px);
+    background-size: 30px 30px, 90px 90px;
+    background-position: 15px -15px;
     flex-wrap: wrap;
     padding: 1rem 0;
 
@@ -361,5 +411,23 @@
   .selectedCard {
     width: 4rem;
     height: 5rem;
+  }
+}
+
+@media (max-width: 364px) {
+  .table > div:nth-child(5){
+    width: 11rem!important;
+  }
+}
+@media (max-width: 364px) {
+  .bodyContainer > div:first-child{
+    width: 90%
+  }
+  .table {
+    align-items: center;
+
+    & > div:nth-child(6){
+      width: 100%;
+    }
   }
 }
