@@ -67,7 +67,7 @@
       width: 5rem;
       border-radius: 0.6rem;
       border: 3px solid var(--border);
-      background-color: var(--bgButton);
+      background-color: var(--bgCard);
       margin: 5rem 0.3rem 3rem 0.3rem;
       display: flex;
       justify-content: center;
@@ -151,7 +151,7 @@
 }
 
 .userArea > span {
-  background-color: var(--bgButton);
+  background-color: var(--bgCard);
   max-width: 140%;
   min-width: 100%;
   height: 2rem;
@@ -175,9 +175,9 @@
 
 .selectedCard {
   border-radius: 0.3rem 0.3rem 0rem 0rem;
-  border: 0.1rem solid var(--bgButtonHover);
+  border: 0.1rem solid var(--bgCard);
   border-bottom: 0;
-  background-color: var(--border);
+  background-color: var(--bgCardArea);
   color: var(--baseFontColor);
   width: 2.5rem;
   height: 3rem;
@@ -246,7 +246,7 @@
         & > button {
           width: 10rem;
           height: 3rem;
-          background-color: var(--bgButton);
+          background-color: var(--bgCard);
           border-radius: 0.3rem;
           border: 0.1rem solid;
           font-family: 'Roboto', sans-serif;
@@ -269,28 +269,28 @@
 .nameModal {
   & > div:nth-child(2) {
     background-color: var(--bgColor);
-    border: 1px solid wheat;
+    border: 1px solid var(--bgCard);
 
     & > div:first-child {
       background: none;
 
       & > div {
-        color: wheat;
+        color: var(--baseFontColor);
         font-size: 1.2rem;
       }
     }
 
     & > div:nth-child(2) input{
       background-color: var(--cardTable);
-      border-color: wheat;
-      color: white;
+      border-color: var(--bgCard);
+      color: var(--defaultWhiteAndBlack);
       font-size: 1rem;
     }
 
     & > div:last-child button{
       border: 3px solid var(--border);
-      background-color: var(--bgButton);
-      color: black;
+      background-color: var(--bgCardArea);
+      color: var(--nameModalBtn);
       font-weight: 600;
       font-size: 1.1rem;
       height: unset;

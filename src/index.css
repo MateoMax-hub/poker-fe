@@ -26,15 +26,15 @@ h6 {
 
 :root {
   --bgColor: white;
-  --bgCardArea: #1c1731;
-  --border: #232245;
+  --bgCardArea: #dde9ff;
+  --border: #558eff;
   --bgButton: #1a2935;
   --bgButtonHover: #3f5e7c;
   --borderButtonHover: #374552;
   --bgSelectedCard: #11213e;
-  --cardTable: #232245;
+  --cardTable: #b2d1ff;
   --footerBg: white;
-  --baseFontColor: wheat;
+  --baseFontColor: black;
   --darkFontColor: black;
   --bgSelect: #121226;
   --borderSelect: #222442;
@@ -52,8 +52,15 @@ h6 {
   --header-brand-border-color: transparent;
   --utilities-btn-bg: #558eff;
   --language-select-bg: #fff;
+  --bgCard: #558eff;
+  --defaultWhiteAndBlack: black;
+  --nameModalBtn: black;
 }
 [data-theme="dark"] * {
+  --border: #232245;
+  --defaultWhiteAndBlack: white;
+  --nameModalBtn: wheat;
+  --baseFontColor: wheat;
   --bgColor: #161228;
   --bgButton: #5f8ab6;
   --home-create-room-btn: #5f8ab6;
@@ -68,4 +75,7 @@ h6 {
   --header-brand-border-color: #3f5e7c;
   --utilities-btn-bg: #09091d;
   --language-select-bg: #121226;
+  --cardTable: #232245;
+  --bgCardArea: #1c1731;
+  --bgCard: #5f8ab6;
 }
