@@ -3,6 +3,8 @@ import { Option } from '../../types';
 import Select from '../common/select/Select';
 import SwitchTheme from '../switchTheme/SwitchTheme';
 import style from './HeaderUtilitiesBtns.module.scss';
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const options: Option[] = [
   {
@@ -31,17 +33,29 @@ const options: Option[] = [
   },
 ];
 
-const HeaderUtilitiesBtns = (props: {isFromSettingsModal?: boolean}) => {
+const HeaderUtilitiesBtns = (props: { isFromSettingsModal?: boolean }) => {
   const [selectedLanguage, setSelectedLanguage] = useState<Option>(options[0]);
   const { utilitiesContainer, utilitiesContainerFromModal } = style;
+  let navigate = useNavigate();
 
   return (
-    <div className={!props.isFromSettingsModal ? utilitiesContainer : utilitiesContainerFromModal}>
-      <Select
+    <div
+      className={
+        !props.isFromSettingsModal
+          ? utilitiesContainer
+          : utilitiesContainerFromModal
+      }
+    >
+      {/* <Select
         options={options}
         onChange={(selection: Option) => setSelectedLanguage(selection)}
         selectedValue={selectedLanguage}
-      />
+      /> */}
+      {!localStorage.getItem('token') ? (
+        <Button onClick={() => navigate('/login')}>Ingresar</Button>
+      ) : (
+        <Button onClick={() => navigate('/planUpdate')}>Seleccionar plan!</Button>
+      )}
       <SwitchTheme />
     </div>
   );

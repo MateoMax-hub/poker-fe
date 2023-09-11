@@ -1,0 +1,19 @@
+.loginContainer {
+    height: calc(100vh - 83px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > div {
+        width: 20rem;
+        border: 2px solid black;
+        border-radius: 2rem;
+        padding: 2rem;
+
+        & > div > form > div:last-child > div > div > div > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
