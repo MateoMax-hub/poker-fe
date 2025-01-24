@@ -16,7 +16,7 @@ Una aplicación interactiva para gestionar sesiones de Poker Planning de manera 
 
 - **React**: Librería principal para el desarrollo de la interfaz.  
 - **React Router**: Para la navegación entre vistas.   
-- **Socket.IO**: Para la interacción en tiempo real (si incluye funcionalidad colaborativa en vivo).  
+- **Socket.IO**: Para la interacción en tiempo real.
 
 ---
 
