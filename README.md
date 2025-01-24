@@ -1,70 +1,68 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Poker Planning App 🃏✨
 
-## Available Scripts
+Una aplicación interactiva para gestionar sesiones de Poker Planning de manera sencilla y eficiente. Desarrollada con **React** y enfocada en proporcionar una experiencia amigable y colaborativa para equipos de trabajo.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🎯 Funcionalidades Principales
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Creación de sesiones**: Configura y personaliza una nueva sesión de Poker Planning.  
+- **Participación en tiempo real**: Los usuarios pueden unirse a una sesión y votar sus estimaciones.  
+- **Visualización de resultados**: Muestra los votos de forma anónima y revela el promedio final.  
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Tecnologías Utilizadas
 
-### `npm test`
+- **React**: Librería principal para el desarrollo de la interfaz.  
+- **React Router**: Para la navegación entre vistas.   
+- **Socket.IO** *(opcional)*: Para la interacción en tiempo real (si incluye funcionalidad colaborativa en vivo).  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sigue estos pasos para poner en marcha la aplicación en tu entorno local:  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clona el repositorio:  
+   ```bash
+    git clone https://github.com/MateoMax-hub/poker-fe.git
+   ```
+2. Accede al directorio del proyecto:  
+   ```bash
+   cd poker-fe
+   ```
+3. Instala las dependencias:  
+   ```bash
+   npm install
+   ```
+4. Inicia el servidor de desarrollo:  
+   ```bash
+   npm start
+   ```
+5. Abre la aplicación en tu navegador en [http://localhost:3000](http://localhost:3000).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🤝 Contribuciones
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+¡Las contribuciones son bienvenidas! Si deseas agregar nuevas funcionalidades, corregir errores o mejorar la documentación:  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Haz un fork del repositorio.  
+2. Crea una rama para tu funcionalidad o corrección:  
+   ```bash
+   git checkout -b mi-nueva-funcionalidad
+   ```
+3. Realiza tus cambios y haz un commit:  
+   ```bash
+   git commit -m "Descripción breve del cambio"
+   ```
+4. Sube los cambios:  
+   ```bash
+   git push origin mi-nueva-funcionalidad
+   ```
+5. Abre un Pull Request.  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
